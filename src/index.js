@@ -1,30 +1,45 @@
 class Sorter {
+
+    /**
+     * Creates Instance of Class
+     *
+     * @returns {Sorter}
+     */
   constructor() {
-    // your implementation
+    this.elements = [];
+		this.compareFunction = (a, b) => a - b;
+    return this;
   }
 
   add(element) {
-    // your implementation
+    this.elements.push(element);
   }
 
   at(index) {
-    // your implementation
+    return this.elements[index];
   }
 
   get length() {
-    // your implementation
+    return this.elements.length;
   }
 
   toArray() {
-    // your implementation
+    return this.elements;
   }
 
   sort(indices) {
-    // your implementation
+      indices.sort();
+	  let arr = this.elements.filter((v, i) => indices.indexOf(i) != -1).sort(this.compareFunction);
+
+	  this.elements.forEach((v, i, elem) => {
+		  if (indices.indexOf(i) != -1) {
+		    elem[i] = arr[indices.indexOf(i)];
+	    }
+	  });
   }
 
   setComparator(compareFunction) {
-    // your implementation
+	  this.compareFunction = compareFunction;
   }
 }
 
